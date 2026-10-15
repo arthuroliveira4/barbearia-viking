@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jarl & Navalha · Barbearia Viking</title>
+<meta name="description" content="Barbearia de estilo viking. Saia daqui como um guerreiro: forte, confiante e imponente.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1a110b;
+  --bg2:#241710;
+  --wood:#3b2516;
+  --wood-light:#5a3a22;
+  --gold:#d4a24c;
+  --gold-light:#f0cd85;
+  --copper:#b4562a;
+  --ember:#d9692f;
+  --text:#ecdcc4;
+  --muted:#a8917a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Crimson Text',Georgia,serif;
+  font-size:1.2rem;
+  line-height:1.6;
+  background-image:
+    repeating-linear-gradient(90deg,rgba(0,0,0,.08) 0 2px,transparent 2px 7px),
+    radial-gradient(ellipse at top,#2b1a10 0%,var(--bg) 70%);
+}
+h1,h2,h3{font-family:'Uncial Antiqua',serif;font-weight:400;color:var(--gold-light);line-height:1.2}
+.cinzel{font-family:'Cinzel',serif;letter-spacing:.15em;text-transform:uppercase}
+a{color:inherit;text-decoration:none}
+section{padding:6rem 1.5rem;position:relative}
+.container{max-width:1100px;margin:0 auto}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1rem 2rem;
+  background:linear-gradient(to bottom,rgba(26,17,11,.95),rgba(26,17,11,.6));
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid rgba(212,162,76,.25);
+}
+.logo{font-family:'Uncial Antiqua';font-size:1.4rem;color:var(--gold)}
+.logo span{color:var(--ember)}
+nav ul{display:flex;gap:2rem;list-style:none;font-family:'Cinzel';font-size:.85rem;letter-spacing:.15em;text-transform:uppercase}
+nav ul a:hover{color:var(--gold)}
+@media(max-width:700px){nav ul{display:none}}
+
+/* BUTTONS */
+.btn{
+  display:inline-block;
+  font-family:'Cinzel';font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:.9rem;
+  padding:1rem 2.2rem;
+  background:linear-gradient(135deg,var(--gold),#a97a2c);
+  color:#1a110b;
+  border:2px solid var(--gold-light);
+  clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);
+  cursor:pointer;transition:.25s;
+}
+.btn:hover{filter:brightness(1.15);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--gold-light);border-color:var(--gold)}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;
+  padding-top:7rem;
+  background:
+    radial-gradient(circle at 50% 40%,rgba(217,105,47,.25),transparent 55%),
+    linear-gradient(to bottom,rgba(26,17,11,.2),var(--bg));
+}
+.hero .runes{font-family:'Uncial Antiqua';color:var(--copper);letter-spacing:.6em;font-size:1.2rem;margin-bottom:1.5rem}
+.hero h1{font-size:clamp(2.8rem,9vw,6.5rem);text-shadow:0 4px 30px rgba(217,105,47,.45);margin-bottom:1rem}
+.hero h1 em{font-style:normal;color:var(--ember)}
+.hero p.sub{max-width:620px;margin:0 auto 2.5rem;font-size:1.4rem;color:var(--text);font-style:italic}
+.hero .cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* DIVIDER */
+.divider{display:flex;align-items:center;gap:1rem;justify-content:center;margin:1rem auto 3rem;color:var(--gold);max-width:420px}
+.divider::before,.divider::after{content:"";flex:1;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.divider svg{width:34px;height:34px}
+
+.section-title{text-align:center;font-size:clamp(2rem,5vw,3.2rem)}
+.section-kicker{text-align:center;color:var(--copper);margin-bottom:.5rem;font-size:.9rem}
+
+/* ABOUT */
+.about{background:var(--bg2);border-top:3px double rgba(212,162,76,.3);border-bottom:3px double rgba(212,162,76,.3)}
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem;margin-top:2rem}
+.pillar{
+  text-align:center;padding:2rem 1.5rem;
+  background:linear-gradient(160deg,var(--wood),#2a1a0f);
+  border:1px solid rgba(212,162,76,.35);
+  box-shadow:inset 0 0 0 4px #2a1a0f,inset 0 0 0 5px rgba(212,162,76,.25);
+}
+.pillar .rune{font-family:'Uncial Antiqua';font-size:3rem;color:var(--ember);line-height:1}
+.pillar h3{font-size:1.4rem;margin:.8rem 0 .5rem}
+.pillar p{color:var(--muted);font-size:1.1rem}
+
+/* PLANS */
+.plans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.8rem;margin-top:2rem}
+.plan{
+  position:relative;padding:2.5rem 1.6rem 2rem;text-align:center;
+  background:linear-gradient(170deg,var(--wood-light),var(--wood) 40%,#2a1a0f);
+  border:2px solid var(--gold);
+  box-shadow:0 12px 30px rgba(0,0,0,.5),inset 0 0 0 5px #2a1a0f,inset 0 0 0 6px rgba(212,162,76,.3);
+  transition:.3s;display:flex;flex-direction:column;
+}
+.plan:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(217,105,47,.25),inset 0 0 0 5px #2a1a0f,inset 0 0 0 6px rgba(212,162,76,.5)}
+.plan.featured{border-color:var(--ember);transform:scale(1.04)}
+.plan.featured:hover{transform:scale(1.04) translateY(-8px)}
+.badge{
+  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  background:var(--ember);color:#1a110b;font-family:'Cinzel';font-weight:700;font-size:.7rem;
+  letter-spacing:.2em;padding:.3rem 1rem;text-transform:uppercase;white-space:nowrap;
+}
+.plan .rune{font-family:'Uncial Antiqua';font-size:2.4rem;color:var(--ember)}
+.plan h3{font-size:2rem;margin:.3rem 0}
+.plan .tag{font-style:italic;color:var(--muted);font-size:1rem;margin-bottom:1rem}
+.plan ul{list-style:none;margin:1rem 0 1.5rem;text-align:left;flex:1}
+.plan li{padding:.4rem 0 .4rem 1.8rem;position:relative;border-bottom:1px dashed rgba(212,162,76,.2)}
+.plan li::before{content:"ᛟ";position:absolute;left:0;color:var(--gold);font-family:'Uncial Antiqua'}
+.plan .price{font-family:'Cinzel';font-size:2.2rem;color:var(--gold-light);font-weight:700;margin-bottom:1rem}
+.plan .price small{font-size:.9rem;color:var(--muted);font-weight:400}
+
+/* GALLERY / QUOTE */
+.quote{
+  text-align:center;
+  background:
+    linear-gradient(rgba(26,17,11,.85),rgba(26,17,11,.85)),
+    repeating-linear-gradient(90deg,var(--wood) 0 40px,#2f1d11 40px 80px);
+  border-top:3px double rgba(212,162,76,.3);border-bottom:3px double rgba(212,162,76,.3);
+}
+.quote blockquote{font-family:'Uncial Antiqua';font-size:clamp(1.5rem,4vw,2.6rem);color:var(--gold-light);max-width:800px;margin:0 auto 1rem}
+.quote cite{color:var(--copper);font-style:normal}
+
+/* CONTACT */
+.contact-box{
+  max-width:560px;margin:2rem auto 0;padding:2.5rem 2rem;
+  background:linear-gradient(170deg,var(--wood),#2a1a0f);
+  border:2px solid var(--gold);
+  box-shadow:0 12px 40px rgba(0,0,0,.6),inset 0 0 0 5px #2a1a0f,inset 0 0 0 6px rgba(212,162,76,.3);
+}
+label{display:block;font-family:'Cinzel';font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:1.2rem 0 .4rem}
+input{
+  width:100%;padding:.9rem 1rem;font-family:'Crimson Text';font-size:1.2rem;
+  background:rgba(26,17,11,.8);color:var(--text);
+  border:1px solid rgba(212,162,76,.5);outline:none;transition:.2s;
+}
+input:focus{border-color:var(--ember);box-shadow:0 0 10px rgba(217,105,47,.4)}
+form .btn{width:100%;margin-top:2rem}
+.msg{margin-top:1.2rem;text-align:center;font-style:italic;min-height:1.5rem}
+.msg.ok{color:var(--gold-light)}
+.msg.err{color:#e57b5a}
+
+/* FOOTER */
+footer{text-align:center;padding:3rem 1.5rem;background:#120b07;border-top:1px solid rgba(212,162,76,.3);color:var(--muted);font-size:1rem}
+footer .logo{display:block;margin-bottom:.5rem;font-size:1.8rem}
+footer .runes{color:var(--copper);letter-spacing:.5em;font-family:'Uncial Antiqua';margin:1rem 0}
+
+@media(max-width:700px){.plan.featured{transform:none}.plan.featured:hover{transform:translateY(-8px)}}
+
+/* ===== ANIMAÇÕES ===== */
+.hero{position:relative;overflow:hidden}
+.hero > div:not(.scene){position:relative;z-index:3}
+.scene{position:absolute;inset:0;z-index:1;display:flex;align-items:flex-end;justify-content:center;pointer-events:none}
+.scene svg{width:min(1100px,115%);height:auto;max-height:95%;opacity:.38;filter:drop-shadow(0 0 30px rgba(217,105,47,.25));animation:sceneIn 2s ease-out both}
+@keyframes sceneIn{from{opacity:0;transform:translateY(40px)}to{opacity:.38;transform:none}}
+.hero::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(26,17,11,.55) 0%,rgba(26,17,11,.2) 45%,transparent 75%)}
+
+/* tesoura da cena */
+.sc-blade-a{transform-origin:0 0;animation:snipA .55s ease-in-out infinite alternate}
+.sc-blade-b{transform-origin:0 0;animation:snipB .55s ease-in-out infinite alternate}
+@keyframes snipA{from{transform:rotate(-2deg)}to{transform:rotate(-20deg)}}
+@keyframes snipB{from{transform:rotate(2deg)}to{transform:rotate(20deg)}}
+.sc-arm{transform-origin:310px 345px;animation:armMove 3s ease-in-out infinite}
+@keyframes armMove{0%,100%{transform:rotate(0)}50%{transform:rotate(-3deg)}}
+.sc-head{transform-origin:520px 300px;animation:headTilt 5s ease-in-out infinite}
+@keyframes headTilt{0%,100%{transform:rotate(0)}50%{transform:rotate(1.8deg)}}
+
+/* pelos e brasas */
+.fx{position:absolute;pointer-events:none;z-index:2;will-change:transform,opacity}
+.hair{width:2px;border-radius:2px;animation:hairFall linear forwards}
+@keyframes hairFall{
+  0%{opacity:0;transform:translate(0,0) rotate(var(--r))}
+  10%{opacity:.9}
+  100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(calc(var(--r) + 220deg))}
+}
+.ember{width:5px;height:5px;border-radius:50%;background:var(--ember);box-shadow:0 0 8px 2px rgba(217,105,47,.7);animation:emberUp linear forwards}
+@keyframes emberUp{
+  0%{opacity:0;transform:translate(0,0) scale(1)}
+  15%{opacity:.9}
+  100%{opacity:0;transform:translate(var(--dx),-85vh) scale(.2)}
+}
+
+/* entrada do hero */
+.hero .runes,.hero h1,.hero p.sub,.hero .cta{opacity:0;animation:rise 1s ease-out forwards}
+.hero .runes{animation-delay:.2s}
+.hero h1{animation-delay:.5s}
+.hero p.sub{animation-delay:.9s}
+.hero .cta{animation-delay:1.2s}
+@keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+.hero .runes{animation:rise 1s .2s ease-out forwards,runeGlow 3s 1.2s ease-in-out infinite}
+@keyframes runeGlow{0%,100%{text-shadow:0 0 0 transparent}50%{text-shadow:0 0 14px var(--ember)}}
+.hero h1 em{display:inline-block;animation:flame 2.5s ease-in-out infinite}
+@keyframes flame{0%,100%{text-shadow:0 0 20px rgba(217,105,47,.4)}50%{text-shadow:0 0 45px rgba(240,160,70,.9)}}
+
+/* brilho de navalha nos títulos */
+.section-title{
+  background:linear-gradient(110deg,var(--gold-light) 40%,#fff6dc 50%,var(--gold-light) 60%);
+  background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:razor 5s linear infinite;
+}
+@keyframes razor{from{background-position:150% 0}to{background-position:-50% 0}}
+
+/* botão com lâmina de brilho */
+.btn{position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);transition:none}
+.btn:hover::after{left:140%;transition:left .7s}
+
+/* revelar ao rolar */
+.reveal{opacity:0;transform:translateY(50px);transition:opacity .9s ease,transform .9s ease;transition-delay:var(--d,0s)}
+.reveal.left{transform:translateX(-60px)}
+.reveal.right{transform:translateX(60px)}
+.reveal.in{opacity:1;transform:none}
+.plan.featured.reveal.in{transform:scale(1.04)}
+@media(max-width:700px){.plan.featured.reveal.in{transform:none}}
+
+/* runas flutuando */
+.pillar .rune,.plan .rune{display:inline-block;animation:floatRune 4s ease-in-out infinite}
+.plan:nth-child(2) .rune{animation-delay:-1s}.plan:nth-child(3) .rune{animation-delay:-2s}.plan:nth-child(4) .rune{animation-delay:-3s}
+@keyframes floatRune{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.pillar{transition:.35s}
+.pillar:hover{transform:translateY(-6px);border-color:var(--ember)}
+.badge{animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(217,105,47,.7)}50%{box-shadow:0 0 0 10px rgba(217,105,47,0)}}
+
+/* divisor com tesoura */
+.divider svg{width:40px;height:40px;overflow:visible}
+.divider .b1{transform-origin:10px 12px;animation:cut1 1.2s ease-in-out infinite alternate}
+.divider .b2{transform-origin:10px 12px;animation:cut2 1.2s ease-in-out infinite alternate}
+@keyframes cut1{from{transform:rotate(0)}to{transform:rotate(14deg)}}
+@keyframes cut2{from{transform:rotate(0)}to{transform:rotate(-14deg)}}
+
+/* barba crescendo no rodapé da citação */
+.quote blockquote{position:relative}
+.quote{overflow:hidden}
+.beard-wave{display:block;width:100%;height:60px;margin-top:2rem;opacity:.6}
+.beard-wave path{animation:sway 4s ease-in-out infinite;transform-origin:center top}
+@keyframes sway{0%,100%{transform:skewX(0)}50%{transform:skewX(3deg)}}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#inicio" class="logo">Jarl <span>&</span> Navalha</a>
+  <ul>
+    <li><a href="#sobre">Saga</a></li>
+    <li><a href="#planos">Planos</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="scene" aria-hidden="true">
+    <svg viewBox="0 0 800 620" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gSkin" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b4784a"/><stop offset="1" stop-color="#6e4126"/></linearGradient>
+        <linearGradient id="gCape" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a3a22"/><stop offset="1" stop-color="#2a1a0f"/></linearGradient>
+        <linearGradient id="gMetal" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e8d9b5"/><stop offset="1" stop-color="#d4a24c"/></linearGradient>
+      </defs>
+      <!-- chão -->
+      <ellipse cx="400" cy="600" rx="360" ry="16" fill="#000" opacity=".4"/>
+      <!-- cadeira -->
+      <rect x="480" y="560" width="30" height="40" fill="#2a1a0f" stroke="#d4a24c" stroke-width="2"/>
+      <ellipse cx="495" cy="602" rx="70" ry="10" fill="#3b2516" stroke="#d4a24c" stroke-width="2"/>
+      <rect x="590" y="260" width="34" height="320" rx="10" fill="#3b2516" stroke="#d4a24c" stroke-width="2"/>
+      <!-- cliente -->
+      <path d="M410 345 Q500 305 600 345 L640 570 L380 570 Z" fill="url(#gCape)" stroke="#d4a24c" stroke-width="2.5"/>
+      <g class="sc-head">
+        <rect x="488" y="285" width="34" height="36" fill="url(#gSkin)"/>
+        <circle cx="505" cy="235" r="56" fill="url(#gSkin)" stroke="#d4a24c" stroke-width="2"/>
+        <!-- cabelo -->
+        <path d="M447 230 Q445 165 505 168 Q568 165 562 232 Q540 195 505 198 Q470 195 447 230Z" fill="#a8461f"/>
+        <!-- barba ruiva -->
+        <path d="M452 245 Q455 320 505 345 Q555 320 558 245 Q545 285 505 288 Q465 285 452 245Z" fill="#b4562a" stroke="#d9692f" stroke-width="2"/>
+        <path d="M480 300 Q505 330 530 300" fill="none" stroke="#7a3216" stroke-width="3"/>
+        <circle cx="485" cy="230" r="4" fill="#1a110b"/><circle cx="527" cy="230" r="4" fill="#1a110b"/>
+      </g>
+      <!-- barbeiro -->
+      <path d="M165 345 Q245 300 325 345 L350 600 L140 600 Z" fill="url(#gCape)" stroke="#d4a24c" stroke-width="2.5"/>
+      <path d="M205 345 L245 600" stroke="#d4a24c" stroke-width="2" opacity=".6"/>
+      <path d="M285 345 L245 600" stroke="#d4a24c" stroke-width="2" opacity=".6"/>
+      <rect x="228" y="290" width="34" height="40" fill="url(#gSkin)"/>
+      <circle cx="245" cy="235" r="50" fill="url(#gSkin)" stroke="#d4a24c" stroke-width="2"/>
+      <path d="M195 230 Q190 170 245 172 Q300 170 296 232 Q275 195 245 198 Q215 195 195 230Z" fill="#3a1d0e"/>
+      <!-- barba trançada do barbeiro -->
+      <path d="M198 242 Q200 310 245 335 Q290 310 292 242 Q282 280 245 283 Q208 280 198 242Z" fill="#3a1d0e" stroke="#d4a24c" stroke-width="1.5"/>
+      <path d="M245 330 L238 375 L252 380 L240 420" fill="none" stroke="#3a1d0e" stroke-width="9" stroke-linecap="round"/>
+      <circle cx="240" cy="425" r="5" fill="#d4a24c"/>
+      <circle cx="225" cy="230" r="4" fill="#1a110b"/><circle cx="265" cy="230" r="4" fill="#1a110b"/>
+      <!-- faixa viking -->
+      <path d="M196 205 Q245 185 295 205" fill="none" stroke="#d4a24c" stroke-width="5"/>
+      <!-- braço e tesoura -->
+      <g class="sc-arm">
+        <path d="M310 350 L390 335 L450 215" fill="none" stroke="#4a2d1a" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M310 350 L390 335 L450 215" fill="none" stroke="#d4a24c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
+        <circle cx="452" cy="210" r="16" fill="url(#gSkin)"/>
+        <g id="scissors" transform="translate(452 195) rotate(-35)">
+          <g class="sc-blade-a"><path d="M0 0 L62 -6 L60 0 Z" fill="url(#gMetal)" stroke="#fff3cf" stroke-width="1"/><circle cx="-12" cy="-10" r="9" fill="none" stroke="#d4a24c" stroke-width="3"/></g>
+          <g class="sc-blade-b"><path d="M0 0 L62 6 L60 0 Z" fill="url(#gMetal)" stroke="#fff3cf" stroke-width="1"/><circle cx="-12" cy="10" r="9" fill="none" stroke="#d4a24c" stroke-width="3"/></g>
+          <circle cx="0" cy="0" r="3.5" fill="#1a110b"/>
+        </g>
+      </g>
+      <!-- runas na parede -->
+      <text x="60" y="110" fill="#d4a24c" opacity=".5" font-size="46" font-family="Uncial Antiqua">ᚠ</text>
+      <text x="690" y="130" fill="#d4a24c" opacity=".5" font-size="46" font-family="Uncial Antiqua">ᛟ</text>
+      <text x="120" y="520" fill="#d4a24c" opacity=".35" font-size="34" font-family="Uncial Antiqua">ᛉ</text>
+    </svg>
+  </div>
+  <div>
+    <div class="runes">ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ</div>
+    <h1>Forje sua<br><em>lenda</em></h1>
+    <p class="sub">Entre como homem. Saia como um viking: forte, imponente e confiante. A barbearia onde a navalha encontra a tradição.</p>
+    <div class="cta">
+      <a href="#planos" class="btn">Escolha seu destino</a>
+      <a href="#contato" class="btn ghost">Fale conosco</a>
+    </div>
+  </div>
+</header>
+
+<section class="about" id="sobre">
+  <div class="container">
+    <p class="section-kicker cinzel">ᚹ A Nossa Saga ᚹ</p>
+    <h2 class="section-title">Cuidado de guerreiro</h2>
+    <div class="divider">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><g class="b1"><line x1="1" y1="8" x2="18" y2="16"/><circle cx="19.5" cy="17.5" r="2.5"/></g><g class="b2"><line x1="1" y1="16" x2="18" y2="8"/><circle cx="19.5" cy="6.5" r="2.5"/></g></svg>
+    </div>
+    <div class="grid about-grid">
+      <div class="pillar">
+        <div class="rune">ᚦ</div>
+        <h3>Força</h3>
+        <p>Cortes marcantes e barbas esculpidas que impõem respeito antes mesmo da primeira palavra.</p>
+      </div>
+      <div class="pillar">
+        <div class="rune">ᛉ</div>
+        <h3>Tradição</h3>
+        <p>Navalha, toalha quente e óleos de madeira e âmbar. O ritual completo dos antigos, com técnica moderna.</p>
+      </div>
+      <div class="pillar">
+        <div class="rune">ᛟ</div>
+        <h3>Honra</h3>
+        <p>Atendimento com a hospitalidade de um salão nórdico: cerveja gelada, boa conversa e um acabamento impecável.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="planos">
+  <div class="container">
+    <p class="section-kicker cinzel">ᛊ Os Reinos ᛊ</p>
+    <h2 class="section-title">Escolha seu plano</h2>
+    <div class="divider">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><g class="b1"><line x1="1" y1="8" x2="18" y2="16"/><circle cx="19.5" cy="17.5" r="2.5"/></g><g class="b2"><line x1="1" y1="16" x2="18" y2="8"/><circle cx="19.5" cy="6.5" r="2.5"/></g></svg>
+    </div>
+
+    <div class="plans-grid">
+      <article class="plan">
+        <div class="rune">ᚨ</div>
+        <h3>Odin</h3>
+        <p class="tag">O sábio de um olho só</p>
+        <ul>
+          <li>Corte de cabelo</li>
+          <li>Finalização com pomada</li>
+        </ul>
+        <div class="price">R$ 45 <small>/ visita</small></div>
+        <a href="#contato" class="btn ghost">Quero Odin</a>
+      </article>
+
+      <article class="plan">
+        <div class="rune">ᛏ</div>
+        <h3>Midgard</h3>
+        <p class="tag">O reino dos homens</p>
+        <ul>
+          <li>Barba completa</li>
+          <li>Toalha quente e navalha</li>
+          <li>Óleo de barba</li>
+        </ul>
+        <div class="price">R$ 40 <small>/ visita</small></div>
+        <a href="#contato" class="btn ghost">Quero Midgard</a>
+      </article>
+
+      <article class="plan featured">
+        <span class="badge">Mais escolhido</span>
+        <div class="rune">ᛒ</div>
+        <h3>Valhalla</h3>
+        <p class="tag">O salão dos heróis</p>
+        <ul>
+          <li>Corte de cabelo</li>
+          <li>Barba completa</li>
+          <li>Toalha quente e óleo</li>
+        </ul>
+        <div class="price">R$ 75 <small>/ visita</small></div>
+        <a href="#contato" class="btn">Quero Valhalla</a>
+      </article>
+
+      <article class="plan">
+        <div class="rune">ᛗ</div>
+        <h3>Asgard</h3>
+        <p class="tag">A morada dos deuses</p>
+        <ul>
+          <li>Corte de cabelo</li>
+          <li>Barba completa</li>
+          <li>Sobrancelha na navalha</li>
+          <li>Hidratação facial</li>
+        </ul>
+        <div class="price">R$ 95 <small>/ visita</small></div>
+        <a href="#contato" class="btn ghost">Quero Asgard</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="quote">
+  <div class="container">
+    <blockquote>“Um guerreiro bem cuidado já venceu metade da batalha.”</blockquote>
+    <cite class="cinzel">— Ditado do Norte</cite>
+    <svg class="beard-wave" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true">
+      <path fill="#b4562a" d="M0 0H1200V10Q1170 55 1140 10Q1110 58 1080 10Q1050 52 1020 10Q990 56 960 10Q930 54 900 10Q870 58 840 10Q810 52 780 10Q750 56 720 10Q690 54 660 10Q630 58 600 10Q570 52 540 10Q510 56 480 10Q450 54 420 10Q390 58 360 10Q330 52 300 10Q270 56 240 10Q210 54 180 10Q150 58 120 10Q90 52 60 10Q30 56 0 10Z"/>
+    </svg>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="container">
+    <p class="section-kicker cinzel">ᚺ Chame o Jarl ᚺ</p>
+    <h2 class="section-title">Deixe seu contato</h2>
+    <div class="divider">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><g class="b1"><line x1="1" y1="8" x2="18" y2="16"/><circle cx="19.5" cy="17.5" r="2.5"/></g><g class="b2"><line x1="1" y1="16" x2="18" y2="8"/><circle cx="19.5" cy="6.5" r="2.5"/></g></svg>
+    </div>
+    <p style="text-align:center;max-width:560px;margin:0 auto;color:var(--muted)">Envie seus dados e nosso escudeiro entrará em contato para marcar seu horário.</p>
+
+    <div class="contact-box">
+      <form id="form" novalidate>
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" placeholder="Seu nome de guerreiro" required>
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" placeholder="voce@email.com" required>
+        <label for="tel">Telefone</label>
+        <input type="tel" id="tel" name="telefone" placeholder="(11) 90000-0000" required>
+        <button type="submit" class="btn">Enviar corvo mensageiro</button>
+        <p class="msg" id="msg" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="logo">Jarl <span style="color:var(--ember)">&</span> Navalha</span>
+  <div class="runes">ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ</div>
+  <p>© 2026 Jarl & Navalha · Barbearia Viking · Todos os direitos reservados</p>
+</footer>
+
+<script>
+// ===== efeitos =====
+const hero = document.getElementById('inicio');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const hairColors = ['#b4562a','#d9692f','#7a3216','#d4a24c','#3a1d0e'];
+
+function spawnHair(container, x, y, count = 1) {
+  for (let i = 0; i < count; i++) {
+    const h = document.createElement('span');
+    h.className = 'fx hair';
+    h.style.left = x + (Math.random() * 30 - 15) + 'px';
+    h.style.top = y + 'px';
+    h.style.height = 10 + Math.random() * 18 + 'px';
+    h.style.background = hairColors[Math.floor(Math.random() * hairColors.length)];
+    h.style.setProperty('--r', Math.random() * 360 + 'deg');
+    h.style.setProperty('--dx', Math.random() * 120 - 60 + 'px');
+    h.style.setProperty('--dy', 180 + Math.random() * 220 + 'px');
+    h.style.animationDuration = 2 + Math.random() * 2 + 's';
+    container.appendChild(h);
+    setTimeout(() => h.remove(), 4200);
+  }
+}
+
+function spawnEmber() {
+  const e = document.createElement('span');
+  e.className = 'fx ember';
+  e.style.left = Math.random() * 100 + '%';
+  e.style.bottom = '-10px';
+  e.style.setProperty('--dx', Math.random() * 120 - 60 + 'px');
+  e.style.animationDuration = 5 + Math.random() * 5 + 's';
+  hero.appendChild(e);
+  setTimeout(() => e.remove(), 10500);
+}
+
+if (!reduce) {
+  // pelos caindo da tesoura do barbeiro
+  const scissors = document.getElementById('scissors');
+  setInterval(() => {
+    if (document.hidden) return;
+    const r = scissors.getBoundingClientRect();
+    const hr = hero.getBoundingClientRect();
+    if (r.width) spawnHair(hero, r.left - hr.left + r.width / 2, r.top - hr.top + r.height / 2, 2);
+  }, 280);
+  setInterval(() => { if (!document.hidden) spawnEmber(); }, 450);
+
+  // clique espalha pelos
+  document.addEventListener('click', e => {
+    const c = document.createElement('div');
+    c.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:99;overflow:hidden';
+    document.body.appendChild(c);
+    spawnHair(c, e.clientX, e.clientY, 14);
+    setTimeout(() => c.remove(), 4300);
+  });
+}
+
+// revelar ao rolar
+document.querySelectorAll('.pillar,.plan').forEach((el, i) => {
+  el.classList.add('reveal');
+  el.style.setProperty('--d', (i % 4) * 0.12 + 's');
+});
+document.querySelectorAll('.section-kicker,.section-title,.contact-box,.quote blockquote').forEach(el => el.classList.add('reveal'));
+const io = new IntersectionObserver(entries => {
+  entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+}, { threshold: .15 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+const form = document.getElementById('form');
+const msg = document.getElementById('msg');
+const tel = document.getElementById('tel');
+
+// máscara simples de telefone brasileiro
+tel.addEventListener('input', () => {
+  let v = tel.value.replace(/\D/g,'').slice(0,11);
+  if (v.length > 6) v = `(${v.slice(0,2)}) ${v.slice(2, v.length === 11 ? 7 : 6)}-${v.slice(v.length === 11 ? 7 : 6)}`;
+  else if (v.length > 2) v = `(${v.slice(0,2)}) ${v.slice(2)}`;
+  tel.value = v;
+});
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const nome = form.nome.value.trim();
+  const email = form.email.value.trim();
+  const fone = form.telefone.value.replace(/\D/g,'');
+
+  msg.className = 'msg err';
+  if (nome.length < 2) return msg.textContent = 'Diga-nos seu nome, guerreiro.';
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return msg.textContent = 'Informe um e-mail válido.';
+  if (fone.length < 10) return msg.textContent = 'Informe um telefone válido com DDD.';
+
+  // TODO: trocar por envio real (fetch para backend, Formspree, etc.)
+  const leads = JSON.parse(localStorage.getItem('leads') || '[]');
+  leads.push({ nome, email, telefone: form.telefone.value, data: new Date().toISOString() });
+  localStorage.setItem('leads', JSON.stringify(leads));
+
+  msg.className = 'msg ok';
+  msg.textContent = `Os corvos partiram, ${nome.split(' ')[0]}! Entraremos em contato em breve.`;
+  form.reset();
+});
+</script>
+</body>
+</html>
